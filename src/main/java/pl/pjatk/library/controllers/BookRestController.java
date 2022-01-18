@@ -1,10 +1,7 @@
 package pl.pjatk.library.controllers;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.pjatk.library.domain.Book;
 import pl.pjatk.library.services.BookService;
 
@@ -23,6 +20,11 @@ public class BookRestController {
     public ResponseEntity<Book> getExampleBook() {
         Book exampleBook = bookService.getExampleBook();
         return ResponseEntity.ok(exampleBook);
+    }
+
+    @GetMapping("/exampleWithTitle")
+    public ResponseEntity<Book> getBookForTitle(@RequestParam String title) {
+        return ResponseEntity.ok(bookService.getBookForTitle(title));
     }
 
     @GetMapping("/all")

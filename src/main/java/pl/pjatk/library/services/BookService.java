@@ -40,6 +40,10 @@ public class BookService {
         return book;
     }
 
+    public Book getBookForTitle(String title) {
+        return new Book(title, "exampleISBN", null, null);
+    }
+
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
