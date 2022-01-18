@@ -91,15 +91,16 @@ public class Book {
         this.authors = authors;
     }
 
-    public void addAuthor(Author a) {
-        this.authors.add(a);
-        a.getBooks().add(this);
-    }
-
-    public void removeAuthor(Author a) {
-        this.authors.remove(a);
-        a.getBooks().remove(this);
-    }
+//useless code
+//    public void addAuthor(Author a) {
+//        this.authors.add(a);
+//        a.getBooks().add(this);
+//    }
+//
+//    public void removeAuthor(Author a) {
+//        this.authors.remove(a);
+//        a.getBooks().remove(this);
+//    }
 
     @Override
     public String toString() {

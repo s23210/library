@@ -62,6 +62,12 @@ public class BookService {
         return book.getAuthors().size();
     }
 
+    public void addAuthorToBook(Book book, Author author) {
+        if (book.getAuthors() != null) {
+            book.getAuthors().add(author);
+        }
+    }
+
     public void changeBookTitle(Book book, String title) {
         if (book.getTitle() != null) {
             book.setTitle(title);
