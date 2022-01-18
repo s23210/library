@@ -1,10 +1,16 @@
 package pl.pjatk.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +21,7 @@ public class Book {
     private Publisher publisher;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "author",
+            name = "author_book",
             joinColumns = @JoinColumn(
                     name = "author_id",
                     referencedColumnName = "id"
@@ -32,6 +38,13 @@ public class Book {
 
     public Book(Integer id, String title, String isbn, Publisher publisher, List<Author> authors) {
         this.id = id;
+        this.title = title;
+        this.isbn = isbn;
+        this.publisher = publisher;
+        this.authors = authors;
+    }
+
+    public Book(String title, String isbn, Publisher publisher, List<Author> authors) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;

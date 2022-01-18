@@ -1,9 +1,13 @@
 package pl.pjatk.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +23,13 @@ public class Publisher {
 
     public Publisher(Integer id, String name, String address, String city, List<Book> books) {
         this.id = id;
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.books = books;
+    }
+
+    public Publisher(String name, String address, String city, List<Book> books) {
         this.name = name;
         this.address = address;
         this.city = city;

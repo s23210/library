@@ -2,6 +2,7 @@ package pl.pjatk.library.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.pjatk.library.domain.Book;
@@ -20,11 +21,32 @@ public class BookRestController {
 
     @GetMapping("/example")
     public ResponseEntity<Book> getExampleBook() {
-        return ResponseEntity.ok(bookService.getExampleBook());
+        Book exampleBook = bookService.getExampleBook();
+        return ResponseEntity.ok(exampleBook);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Book>> getAllBooks() {
         return ResponseEntity.ok(bookService.getAllBooks());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getById(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(bookService.findById(id));
+    }
+
+    @GetMapping("/delete/{id}")
+    public void deleteById(@PathVariable("id") Integer id) {
+        bookService.deleteById(id);
+    }
+
+    @GetMapping("how_many_authors/{id}")
+    public String countAuthorsByBookId(@PathVariable("id") Integer id) {
+        return "Book with id=" + id + " has " + bookService.countAuthorsById(id) + " authors.";
+    }
+
+    @GetMapping("title/{title}")
+    public ResponseEntity<List<Book>> getByTitle(@PathVariable("title") String title) {
+        return ResponseEntity.ok(bookService.findByTitle(title));
     }
 }

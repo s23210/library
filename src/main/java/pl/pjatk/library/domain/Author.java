@@ -1,10 +1,14 @@
 package pl.pjatk.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +23,12 @@ public class Author {
 
     public Author(Integer id, String firstName, String lastName, List<Book> books) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.books = books;
+    }
+
+    public Author(String firstName, String lastName, List<Book> books) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.books = books;
