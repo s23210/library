@@ -66,17 +66,6 @@ public class Author {
         this.books = books;
     }
 
-//useless code
-//    public void addBook(Book b) {
-//        this.books.add(b);
-//        b.getAuthors().add(this);
-//    }
-//
-//    public void removeBook(Book b) {
-//        this.books.remove(b);
-//        b.getAuthors().remove(this);
-//    }
-
     @Override
     public String toString() {
         return "Author{" +
