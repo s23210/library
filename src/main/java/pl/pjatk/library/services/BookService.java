@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.pjatk.library.domain.Author;
 import pl.pjatk.library.domain.Book;
 import pl.pjatk.library.domain.Publisher;
+import pl.pjatk.library.repositories.AuthorRepository;
 import pl.pjatk.library.repositories.BookRepository;
 
 import java.util.ArrayList;
@@ -13,9 +14,11 @@ import java.util.Optional;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
 
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
     }
 
     public Book getExampleBook() {
@@ -51,9 +54,8 @@ public class BookService {
         return bookRepository.findAllByTitle(title);
     }
 
-    public int countAuthorsById(Integer id) {
-        Book book = findById(id);
-        return book.getAuthors().size();
+    public int countAuthorsByBookId(Integer id) {
+            return authorRepository.countByBooksId(id);
     }
 
     public void addAuthorToBook(Book book, Author author) {

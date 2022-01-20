@@ -44,7 +44,7 @@ public class BookRestController {
 
     @GetMapping("how_many_authors/{id}")
     public String countAuthorsByBookId(@PathVariable("id") Integer id) {
-        return "Book with id=" + id + " has " + bookService.countAuthorsById(id) + " authors.";
+        return "Book with id=" + id + " has " + bookService.countAuthorsByBookId(id) + " author/s.";
     }
 
     @GetMapping("title/{title}")
